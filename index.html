@@ -13,7 +13,8 @@
     <script src="https://src.litix.io/videojs/4/videojs-mux.js"></script>
     <script src="https://vsp-azrhk.mlytics.com/token/geo.js"></script>
     <script src="https://cdn.jsdelivr.net/npm/@mlytics/p2sp-sdk@0.6.3/bundle/driver.min.js"></script>
-    <script src="https://cdn.jsdelivr.net/npm/@mlytics/p2sp-sdk@0.6.3/bundle/peripheral/player/videojs-hls.min.js"></script>
+    <script
+        src="https://cdn.jsdelivr.net/npm/@mlytics/p2sp-sdk@0.6.3/bundle/peripheral/player/videojs-hls.min.js"></script>
 </head>
 
 <body>
@@ -23,13 +24,8 @@
     <script>
         const driver = mlysdk.driver.initialize({
             client: {
-                id: "cd7l6tbloio3b0ioal00",
-                key: "mXEhNlS9osPYWbZ64gCqkIUMRjDH7xJT"
-            },
-            server: {
-                host: {
-                    fqdn: "vsp.mlytics.co"
-                }
+                id: "cegh8d9j11u91ba1u600",
+                key: "Wr7t2lePF6uVvHpi4g0sqcoMkDX89Q5G"
             }
         });
         const player = window.videojs("video", {
@@ -43,18 +39,17 @@
                 }
             },
             sources: [{
-                src: "https://82934cf9c8696bd2.mediapackage.us-east-1.amazonaws.com/out/v1/7fad9fe5e02942199d29d901b9791623/index.m3u8",
+                src: "https://vsp-stream.s3.ap-northeast-1.amazonaws.com/HLS/raw/SpaceX.m3u8",
                 type: "application/vnd.apple.mpegurl"
             }],
             plugins: {
                 mux: {
                     data: {
-                        env_key: "gp0ku38e5c6fglvgp4is4e24d",
+                        env_key: "hmp0tvs823e2hovchm60o2m11",
                         viewer_user_id: driver.info.sessionID,
-                        sub_property_id: "1001659593134",
-                        view_session_id: "cd7l6tbloio3b0ioakv0",
-                        custom_1: "cd7l6tbloio3b0ioal00",
-                        custom_2: mData.ip
+                        sub_property_id: "1001642588942",
+                        view_session_id: "cegh8d9j11u91ba1u5v0",
+                        custom_1: "cegh8d9j11u91ba1u600"
                     }
                 }
             }
