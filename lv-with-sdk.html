@@ -22,6 +22,7 @@
         <video autoplay muted id="video" class="video-js vjs-theme-fantasy"></video>
     </div>
     <script>
+        var startTime = performance.now()
         const driver = mlysdk.driver.initialize({
             client: {
                 id: "ceqfcmphsea70gdoh0lg",
@@ -53,6 +54,10 @@
                     }
                 }
             }
+        });
+        play.on('play', () => {
+            var endTime = performance.now()
+            console.log(`Call to doSomething took ${endTime - startTime} milliseconds`)
         });
     </script>
 </body>
