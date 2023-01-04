@@ -61,7 +61,7 @@
         player.on('play', () => {
             var endTime = performance.now()
             var costTime = endTime - startTime
-            console.log(`play time ${costTime} milliseconds`)
+            document.getElementById("spend-time").textContent = `play time ${costTime} milliseconds`
         });
     </script>
 </body>
