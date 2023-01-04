@@ -18,43 +18,8 @@
 </head>
 
 <body>
-    <div style="width: 800px">
-        <video id="video" class="video-js vjs-theme-fantasy"></video>
-    </div>
-    <script>
-        const driver = mlysdk.driver.initialize({
-            client: {
-                id: "cegh8d9j11u91ba1u600",
-                key: "Wr7t2lePF6uVvHpi4g0sqcoMkDX89Q5G"
-            }
-        });
-        const player = window.videojs("video", {
-            autoplay: true,
-            controls: true,
-            preload: "auto",
-            aspectRatio: "16:9",
-            html5: {
-                hlsConfig: {
-                    loader: driver.integrations.HLSLoader
-                }
-            },
-            sources: [{
-                src: "https://vsp-stream.s3.ap-northeast-1.amazonaws.com/HLS/raw/SpaceX.m3u8",
-                type: "application/vnd.apple.mpegurl"
-            }],
-            plugins: {
-                mux: {
-                    data: {
-                        env_key: "hmp0tvs823e2hovchm60o2m11",
-                        viewer_user_id: driver.info.sessionID,
-                        sub_property_id: "1001642588942",
-                        view_session_id: "cegh8d9j11u91ba1u5v0",
-                        custom_1: "cegh8d9j11u91ba1u600"
-                    }
-                }
-            }
-        });
-    </script>
+    <a href="/lv-with-sdk.html" target="_blank">Live Streaming with sdk</a><br>
+    <a href="/lv-without-sdk.html" target="_blank">Live Stream without sdk</a>
 </body>
 
 </html>
