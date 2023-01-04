@@ -14,13 +14,14 @@
 </head>
 
 <body>
+    <div>Without SDK</div>
     <div style="width: 800px">
         <video id="video" class="video-js vjs-theme-fantasy"></video>
     </div>
     <script>
         const player = window.videojs("video", {
             autoplay: true,
-            controls: true,
+            // controls: true,
             preload: "auto",
             aspectRatio: "16:9",
             sources: [{
