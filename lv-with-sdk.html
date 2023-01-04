@@ -21,6 +21,9 @@
     <div style="width: 800px">
         <video autoplay muted id="video" class="video-js vjs-theme-fantasy"></video>
     </div>
+    <div id="spend-time">
+
+    </div>
     <script>
         var startTime = performance.now()
         const driver = mlysdk.driver.initialize({
@@ -57,7 +60,8 @@
         });
         player.on('play', () => {
             var endTime = performance.now()
-            console.log(`Call to doSomething took ${endTime - startTime} milliseconds`)
+            var costTime = endTime - startTime
+            console.log(`play time ${costTime} milliseconds`)
         });
     </script>
 </body>
