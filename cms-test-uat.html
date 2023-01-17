@@ -34,7 +34,9 @@
             aspectRatio: "16:9",
             html5: {
                 hlsConfig: {
-                    loader: driver.integrations.HLSLoader
+                    loader: driver.integrations.HLSLoader,
+                    maxBufferLength: 2,
+                    maxMaxBufferLength: 3
                 }
             },
             sources: [{
