@@ -1,0 +1,151 @@
+<html>
+​
+<meta charset="UTF-8">
+<style type="text/css">
+    body,
+    html {
+        width: 100%;
+        height: 100%;
+        background: #000;
+        padding: 0;
+        margin: 0;
+        overflow-x: hidden;
+        overflow-y: hidden
+    }
+
+    ​ * {
+        margin: 0;
+        border: 0;
+        padding: 0;
+        text-decoration: none
+    }
+
+    ​ #stats {
+        position: fixed;
+        top: 5px;
+        left: 10px;
+        font-size: 12px;
+        color: #fdfdfd;
+        z-index: 2147483647;
+        text-shadow: 1px 1px 1px #000, 1px 1px 1px #000
+    }
+
+    ​ #dplayer {
+        position: inherit
+    }
+</style>
+​
+<video id="video" controls width="960" height="400" />
+<div id="stats"></div>
+<script src="https://src.litix.io/core/4/mux.js"></script>
+<script src="https://sta.cvndnss.com/web/js/lib/hls.min.js?v=1659851102567"></script>
+<script src="https://cdn.jsdelivr.net/npm/@mlytics/p2sp-sdk@v0.8.1-2/bundle/driver.min.js"></script>
+​
+<script>
+    const driver = mlysdk.driver.initialize({
+        client: {
+            id: "cec4el9j11u91ba1u4ag",
+            key: "5LO1bKuiVMlZRYosBxq40za2SrvtdejG"
+        }
+    });
+    var adfirstquartile = false
+    var admidpoint = false
+    var adthirdquartile = false
+    var adended = false
+    var time = false
+    var type = 'normal';
+    var video = document.getElementById('video');
+    if (Hls.isSupported()) {
+        var hls = new Hls({
+            debug: false,
+            loader: driver.integrations.HLSLoader,
+            maxBufferLength: 2,
+            maxMaxBufferLength: 2
+        });
+        hls.loadSource(
+            'https://live66.taida2017.com/live/5d4a7d43ac934bc8a065cf99e4399fec.m3u8?txSecret=e7cd12d13b119cbb7d1b7cd546834d1f&txTime=2689aabf8d189a9acdd07732a21c068'
+        );
+        hls.attachMedia(video);
+        hls.on(Hls.Events.MEDIA_ATTACHED, function () {
+            video.muted = true;
+            video.play();
+        });
+        driver.export.on('http_download_record', (record) => {
+            console.log(record);
+        });
+        driver.export.on('p2sp_system_state', (record) => {
+            console.log(record);
+        });
+    } else {
+        alert("hls is not supported.")
+    }
+
+    if (typeof mux !== 'undefined') {
+        window.muxPlayerInitTime = mux.utils.now();
+    }
+
+    video.addEventListener('loadedmetadata', function () {
+        if (typeof mux !== 'undefined') {
+            mux.monitor(video, {
+                debug: false,
+                hlsjs: hls,
+                Hls: Hls,
+                data: {
+                    env_key: "hmp0tvs823e2hovchm60o2m11",
+                    viewer_user_id: driver.info.sessionID,
+                    sub_property_id: "1001669867531",
+                    view_session_id: "cec4el9j11u91ba1u49g",
+                    custom_1: "cec4el9j11u91ba1u4ag"
+                }
+            });
+        }
+    })
+
+    video.addEventListener('play', function () {
+        setTimer()
+    })
+
+    video.addEventListener('pause', function () {
+        clearTimer()
+    })
+
+    video.addEventListener('ended', function () {
+        clearTimer()
+    })
+
+    function clearTimer() {
+        if (this.timer) {
+            clearInterval(this.timer)
+        }
+    }
+
+    function setTimer() {
+
+        this.timer = setInterval(function () {
+
+            checkPlayTime(); // will get you a lot more updates.
+        }, 1000)
+
+    }
+
+    function checkPlayTime() {
+        if (video.currentTime > 3 && !adfirstquartile) {
+            adfirstquartile = true
+            mux.emit(video, 'adfirstquartile')
+        }
+        if (video.currentTime > 5 && !admidpoint) {
+            admidpoint = true
+            mux.emit(video, 'admidpoint')
+        }
+        if (video.currentTime > 10 && !adthirdquartile) {
+            adthirdquartile = true
+            mux.emit(video, 'adthirdquartile')
+        }
+        if (video.currentTime > (video.duration - 1) && !adended) {
+            adended = true
+            mux.emit(video, 'adended')
+        }
+    }
+</script>
+
+</html>
