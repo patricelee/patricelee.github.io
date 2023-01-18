@@ -22,12 +22,6 @@
             client: {
                 id: "cec4el9j11u91ba1u4ag",
                 key: "5LO1bKuiVMlZRYosBxq40za2SrvtdejG"
-            },
-            html5: {
-                hlsConfig: {
-                    maxBufferLength: 2,
-                    maxMaxBufferLength: 3
-                }
             }
         };
         window.videojsConfig = {
@@ -38,7 +32,13 @@
             playbackRates: [0.5, 0.75, 1.0, 1.5, 2.0],
             sources: [{
                 src: 'https://live66.taida2017.com/live/5d4a7d43ac934bc8a065cf99e4399fec.m3u8?txSecret=e7cd12d13b119cbb7d1b7cd546834d1f&txTime=2689aabf8d189a9acdd07732a21c068',
-            }]
+            }],
+            html5: {
+                hlsConfig: {
+                    maxBufferLength: 2,
+                    maxMaxBufferLength: 3
+                }
+            }
         };
 
         if (typeof mux !== 'undefined') {
