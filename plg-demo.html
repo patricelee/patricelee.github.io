@@ -1,0 +1,47 @@
+<!doctype html>
+<!--suppress JSUnresolvedFunction, JSUnresolvedVariable -->
+<html lang="en">
+​
+
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport"
+        content="width=device-width, user-scalable=no, initial-scale=1.0, maximum-scale=1.0, minimum-scale=1.0">
+    <meta http-equiv="X-UA-Compatible" content="ie=edge">
+    <title>mlytics P2SP test</title>
+    <script src="https://cdn.jsdelivr.net/npm/hls.js@1.3.1"></script>
+    <script src="../../build/bundle/driver.min.js"></script>
+</head>
+​
+
+<body>
+    <div style="width: 800px">
+        <video id="video">
+    </div>
+    </div>
+    <script>
+        const driver = mlysdk.driver.initialize({
+            client: {
+                id: "cfriiso2vdjqrvhk5bfg",
+                key: "2fd6Asv8ck4zThCmjgXDRnGUuZp7YLWH"
+            }
+        });
+
+        const video = document.getElementById('video');
+        const src = 'https://1001675397494-livemediaaceaprod-aaea.streaming.media.azure.net/6b301de1-cb5d-4bc8-8d3a-4da414386765/output.ism/manifest(format=m3u8-cmaf)';
+        if (Hls.isSupported()) {
+            const hls = new Hls({
+                loader: driver.integrations.HLSLoader,
+                liveSyncDuration: 2,
+                liveMaxLatencyDuration: 3,
+                maxLiveSyncPlaybackRate: 1.1,
+                liveDurationInfinity: true
+            });
+            hls.loadSource(src);
+            hls.attachMedia(video);
+        }
+    </script>
+</body>
+​
+
+</html>
