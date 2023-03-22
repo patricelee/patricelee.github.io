@@ -22,12 +22,13 @@
         <video id="video" class="video-js vjs-theme-fantasy"></video>
     </div>
     <script>
-        const driver = mlysdk.driver.initialize();
-
-        const player = window.videojs("video", {
+        const driver = mlysdk.driver.initialize({
             logger: {
                 level: "DEBUG"
             },
+        });
+
+        const player = window.videojs("video", {
             autoplay: true,
             controls: true,
             preload: "auto",
