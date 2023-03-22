@@ -25,6 +25,9 @@
         const driver = mlysdk.driver.initialize();
 
         const player = window.videojs("video", {
+            logger: {
+                level: "DEBUG"
+            },
             autoplay: true,
             controls: true,
             preload: "auto",
